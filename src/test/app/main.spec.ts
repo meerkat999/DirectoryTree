@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { main } from '../../app/main'
+import { initProcess } from '../../app/main'
 import fs from 'fs'
 
 describe('Main test', () => {
   it('Must test all the app', async () => {
     const responseOutput = fs.readFileSync(__dirname + '/output.txt', 'utf8')
-    let response = await main()
+    let response = await initProcess(__dirname + '/input.txt')
     const responseItems: string[] = []
     response.forEach(r => responseItems.push(...r.split('\n'))) as any
     const localFileItems = responseOutput.split('\r\n')
